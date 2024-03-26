@@ -680,6 +680,14 @@ start_collector() {
       DQMCollector --listen 9090 </dev/null >>$LOGDIR/$FLAVOR/collector-$(hostname -s).log 2>&1 &
     fi
     ;;
+  # Muon server: Gets its own collector (checks hostname & username):
+  online:dqmfu-c2b03-46-01:*collector*)
+    if echo "$USER" | grep -qi "dtdqm"; then
+      DQMCollector --listen 9090 </dev/null >>$LOGDIR/$FLAVOR/collector-$(hostname -s).log 2>&1 &
+    elif echo "$USER" | grep -qi "gemdqm"; then
+      DQMCollector --listen 9100 </dev/null >>$LOGDIR/$FLAVOR/collector-$(hostname -s).log 2>&1 &
+    fi
+    ;;
   # "Old" procedure (with rotatelogs) for vocms* machines
   # TODO: Remove after migration of vocms machines to newer OS (>=RHEL8).
   *:vocms*:*collector*)

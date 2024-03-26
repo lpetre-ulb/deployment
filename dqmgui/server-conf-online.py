@@ -110,6 +110,11 @@ elif HOSTALIAS == "dqmfu-c2b03-46-01":  # Muon DQMFU
         SERVERPORT = 9010
         SERVICENAME = "Online DT"
         BASEURL = "/dqm/dt-online"
+    elif "gemdqm" in USERNAME:
+        COLLPORT = 9100
+        SERVERPORT = 8100
+        SERVICENAME = "Online GEM"
+        BASEURL = "/dqm/gem-online"
 
 # Server configuration.
 modules = ("Monitoring.DQM.GUI",)
